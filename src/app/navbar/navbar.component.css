@@ -1,0 +1,28 @@
+.navbar {
+  border-radius: 3px;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+li{
+  margin: 5px;
+}
+/* CSS */
+.profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+}
+
+.profile-image {
+  width: 20px; /* ปรับขนาดรูปโปรไฟล์ตามความต้องการ */
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  font-weight: bold;
+}

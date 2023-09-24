@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+      <div class="col-md-6">
+        <div class="create-item-container">
+          <h2 class="text-center mb-4">NEW POST</h2>
+          <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="postName" class="form-label">Name of Post:</label>
+              <!-- <input type="text" id="postName" formControlName="postName" class="form-control"> -->
+            </div>
+            <div class="form-group">
+              <label for="postContent" class="form-label">Content:</label>
+              <textarea id="postContent" formControlName="content" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="postLocation" class="form-label">Location:</label>
+              <!-- <input type="text" id="postLocation" formControlName="postLocation" class="form-control"> -->
+            </div>
+            <div class="form-group">
+              <label for="postImage" class="form-label">Image:</label>
+              <!-- <input type="file" id="postImage" formControlName="postImage" class="form-control-file" accept="image/*" (change)="handleFileInput($event)"> -->
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Create Post</button>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<app-footer></app-footer>
+  

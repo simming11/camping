@@ -1,0 +1,14 @@
+.profile-image {
+    width: 20px; /* ปรับขนาดรูปโปรไฟล์ตามความต้องการ */
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+  }

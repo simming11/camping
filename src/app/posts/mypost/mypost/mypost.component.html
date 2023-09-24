@@ -1,0 +1,66 @@
+<div class="block">
+  <div class="d-grid gap-2 d-md-flex mr-2 justify-content-md-end">
+    <a [routerLink]="'/post'" class="btn btn-primary btn-custom mr-2" id="Aimages">
+      <img src="/assets/more.png" width="25px" height="25px" alt="Image Alt Text" class="mr-1">
+      <h4 class="post mb-0">POST</h4>
+    </a>
+    <a class="btn btn-primary btn-custom mr-2" id="Aimages">
+      <img src="/assets/search.png" width="25px" height="25px" alt="Image Alt Text" class="mr-1">
+      <h4 class="search mb-0">SEARCH</h4>
+    </a>
+  </div>
+</div>
+
+<!-- <div class="card g-1" >
+      <div class="row m-1">
+        <div class="col-md-4">
+          <img src="https://www.dohome.co.th/media/catalog/product/1/0/10022469_pun_1200_1_4.jpg" width="250" height="250" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8 d-flex align-items-center">
+          <div class="card-body" id="card-body">
+            <h1 class="card-title">ผู้โพส {{post.firstname}}</h1>
+            <p class="card-text">ประสบการณ์ {{ post.content }}</p>
+            <p class="card-text"><small class="text-body-secondary">วันที่ {{post.timestamp |  date:'yyyy-MM-dd' }}</small></p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 30%;">#</th>
+      <th scope="col" style="width: 40%;">Firstname</th>
+      <th scope="col" style="width: 20%;">Content</th>
+      <th scope="col">แก้ไข</th>
+      <th scope="col">ลบ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of ShowPost; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ post.firstname }}</td>
+      <td>{{ post.content }}</td>
+      <td>
+        <a [routerLink]="['/post', post.postid]" class="profile-link">
+          <img src="/assets/edit.png" alt="Profile Image" class="profile-image">
+          <span class="profile-name">{{ mypost }}</span>
+        </a>
+      </td>
+      <td>
+        <a class="profile-link">
+          <img
+            src="/assets/delete.png"
+            alt="Profile Image"
+            class="profile-image"
+            (click)="confirmDelete(post.postid)"
+          >
+          <span class="profile-name">{{ mypost }}</span>
+        </a>
+        
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<app-footer></app-footer>
