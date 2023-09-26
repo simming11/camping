@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     { }
   username: string = '';
   password: string = '';
+  role: string = 'admin';
   users: any[] = []; 
 
   ngOnInit() {
@@ -30,20 +31,34 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user = this.users.find(u => u.username === this.username && u.password === this.password);
+    const user = this.users.find(u => u.username === this.username && u.password === this.password && this.role == this.role);
+    
     if (user) {
-      var ssss= this.SH.setItem('firstname', user.firstname)
-      console.log(ssss,'ssssssss');
-    var log = this.SH.setItem('user',user)
-  
-      this.SH.setItem('userid', user.userid)
-      Swal.fire(
-        'เข้าสู้ระบบสำเร็จ',
-        '',
-        'success'
-      )
-      this.authService.login(); 
-      this.router.navigate(['home']);
+      this.SH.setItem('firstname', user.firstname);
+      this.SH.setItem('user', user);
+      this.SH.setItem('userid', user.userid);
+      this.SH.setItem('role', user.role);
+      
+      if (user.role == 'admin') {
+        console.log(user.role,'role');
+        this.SH.setItem('firstname', user.firstname);
+        this.SH.setItem('user', user);
+        this.SH.setItem('userid', user.userid);
+        this.SH.setItem('role', user.role);
+        
+        // Redirect to the admin page or any other page for admins
+        this.router.navigate(['admin']);
+        this.authService.loginAdmin();
+      } else {
+        // For non-admin users
+        Swal.fire(
+          'เข้าสู่ระบบสำเร็จ',
+          '',
+          'success'
+        )
+        this.authService.login(); 
+        this.router.navigate(['home']);
+      }
     } else {
       Swal.fire({
         icon: 'error',
@@ -53,4 +68,5 @@ export class LoginComponent implements OnInit {
       console.log('Login failed');
     }
   }
+  
 }

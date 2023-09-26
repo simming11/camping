@@ -1,0 +1,39 @@
+<nav *ngIf="islogInAdmin">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary container-fluid ">
+      <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="'home'">Camp Story</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <span class="navbar-text">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li>
+                    <a [routerLink]="['/Mypost']" class="profile-link">
+                      <img src="/assets/blog.png" alt="My Post" class="profile-image">
+                      <span class="profile-name">USER</span>
+                    </a>
+                  </li>
+                <li>
+                  <a [routerLink]="['/Mypost']" class="profile-link">
+                    <img src="/assets/blog.png" alt="My Post" class="profile-image">
+                    <span class="profile-name">approvalstatus</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/edit', sesStr]" class="profile-link">
+                    <img src="/assets/user.png" alt="Profile Image" class="profile-image">
+                    <span class="profile-name">{{ sesStr }}</span>
+                  </a>
+                </li> 
+                <li>
+                  <button class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()">Logout</button>
+                </li>
+              </ul>
+          </span>
+        </div>
+      </div> 
+    </nav>
+  </nav>

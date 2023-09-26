@@ -5,11 +5,11 @@ import { RegistrationService } from '../registration/registration.service';
 import { SharedService } from '../shared.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-navbar-user',
+  templateUrl: './navbar-user.component.html',
+  styleUrls: ['./navbar-user.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarUserComponent implements OnInit{
   isLoggedIn = false;
   sesStr: string[] = [];
   islogInAdmin = false;
@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = this.SH.getStorage('firstname');
       this.sesStr = this.SH.getItem('firstname');
       this.SH.getItem('userid');
-      this.SH.getItem('role');
     });
 
     // this.authService.islogInAdmin.subscribe((islogInAdmin) => {

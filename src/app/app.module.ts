@@ -17,6 +17,9 @@ import { EditProfileComponent } from './navbar/edit/edit-profile/edit-profile.co
 import { PostsComponent } from './posts/posts.component';
 import { MypostComponent } from './posts/mypost/mypost/mypost.component';
 import { EditpostComponent } from './posts/mypost/mypost/editpost/editpost/editpost.component';
+import { AdminComponent } from './admin/admin.component';
+import { NavbarAdminComponent } from './admin/navbar-admin/navbar-admin.component';
+import { NavbarUserComponent } from './navbar-user/navbar-user.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { EditpostComponent } from './posts/mypost/mypost/editpost/editpost/editp
     PostsComponent,
     MypostComponent,
     EditpostComponent,
+    AdminComponent,
+    NavbarAdminComponent,
+    NavbarUserComponent,
   ],
   imports: [
     BrowserModule,

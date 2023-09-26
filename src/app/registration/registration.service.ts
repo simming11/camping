@@ -32,5 +32,10 @@ export class RegistrationService {
     const editUrl = `https://localhost:7197/api/Camp/edit/${postId}`; // Replace with your API endpoint
     return this.http.put<any>(editUrl, updatedPost, { headers });
   }
+  saveImages(model: FormData) {
+    const headers = new HttpHeaders();
+    // Do not set Content-Type, as it will be automatically set by the browser for FormData requests
+    return this.http.post<any>('https://localhost:7197/api/Camp/saveimages', model, { headers });
+  }
   
 }

@@ -1,4 +1,3 @@
-
 <div class="block">
 <div class="d-grid gap-2 d-md-flex mr-2 justify-content-md-end">
   <a [routerLink]="'/post'" class="btn btn-primary btn-custom mr-2" id="Aimages">
@@ -9,30 +8,6 @@
   </a>
 </div>
 </div>
-<!-- <div class="blockpost">
-<div class="card g-1" *ngFor="let post of ShowPost" id="card">
-  <div class="row m-1">
-    <div class="col-md-4">
-      <img src="https://www.dohome.co.th/media/catalog/product/1/0/10022469_pun_1200_1_4.jpg" width="250" height="250" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8 d-flex align-items-center">
-      <div class="card-body" id="card-body">
-        <h1 class="card-title">ผู้โพส {{post.firstname}}</h1>
-        <p class="card-text">ประสบการณ์ {{ post.content }}</p>
-        <p class="card-text"><small class="text-body-secondary">วันที่ {{post.timestamp |  date:'yyyy-MM-dd' }}</small></p>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
-<!-- <div class="card w-50 mb-2 mx-auto" *ngFor="let post of ShowPost">
-  <div class="card-body">
-    <h5 class="card-title">{{ post.firstname }}</h5>
-    <h6 class="card-title">{{ post.timestamp | date:'yyyy-MM-dd' }}</h6>
-    <p class="card-text">{{ post.content }}.</p>
-    <a href="#" class="btn btn-primary">Button</a>
-  </div>
-</div> -->
 
 <div class="card mb-3 mx-auto" style="max-width: 540px;"*ngFor="let post of ShowPost">
   <div class="row g-0">
