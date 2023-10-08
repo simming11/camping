@@ -41,4 +41,10 @@
   .create-item-container .d-grid {
     margin-top: 10px;
   }
-  
+  .profile-picture {
+    width: 100px; /* ปรับขนาดรูปภาพตามที่คุณต้องการ */
+    height: 100px; /* ปรับขนาดรูปภาพตามที่คุณต้องการ */
+    border: 2px solid #ccc; /* เพิ่มเส้นขอบสีเทา */
+    border-radius: 0%; /* ทำให้รูปภาพเป็นวงกลม */
+    object-fit: cover; /* ปรับขนาดรูปภาพให้ครอบคลุมพื้นที่ในกรอบ */
+  }

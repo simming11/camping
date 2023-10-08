@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Guid } from 'guid-typescript';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { RegistrationService } from '../registration/registration.service';
-import { User } from '../registration/registration.component';
 import { SharedService } from '../shared.service';
 import { FileUploadService } from './file-upload.service';
+import { AuthService } from '../auth.service';
+import { NgIf } from '@angular/common';
+
 
 export class CreatePostComponent {
   postid!: string;
   userId?: string;
   content?: string;
-  images?: string[];
+  images!: string
   timestamp?: string;
   privacysetting?: string;
   firstname!: string
-  // adminapprovals: Adminapproval[];
-  // user?: User;
+  approvalstatus! : number
+  imageUrl: string | undefined;
+  postlocation! : string
+  title!: any
 }
 @Component({
   selector: 'app-posts',
@@ -31,11 +34,19 @@ export class PostsComponent implements OnInit {
   firstname: any[] = [];
   dataSission: any[] = [];
   selectedFiles: File[] = [];
+  public response! : {dbPath : ''}
+  imageUrl: string | undefined;
+  images: any;
+  urlimages : any = 'https://localhost:7197/'
+  title!: any
+  islogInAdmin = false;
+  isLoggedIn = false;
   constructor(private fb: FormBuilder,
     private service: RegistrationService,
-    private router: Router,
     private SH: SharedService,
-    private fileUploadService: FileUploadService
+    private authService: AuthService,
+    private router: Router,
+    private http: RegistrationService,
   ) {
     this.CreatePostComponent();
   }
@@ -43,8 +54,18 @@ export class PostsComponent implements OnInit {
     this.users = this.SH.getItem('userid')
     console.log(this.users, 'user');
 
-    this.firstname = this.SH.getItem('firstname')
+    this.firstname 
     console.log(this.users, 'firstname');
+    this.images = this.SH.getItem('images')
+    this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
+      this.http.ShowUser().subscribe((data: any) => {
+        this.isLoggedIn = isLoggedIn;
+        this.isLoggedIn = this.SH.getStorage('firstname');
+        this.firstname  = this.SH.getItem('firstname');
+        this.SH.getItem('userid');
+         this.images = this.SH.getItem('images')
+      });
+    });
 
 
     this.CreatePostComponent()
@@ -53,12 +74,33 @@ export class PostsComponent implements OnInit {
   CreatePostComponent() {
     this.postForm = this.fb.group({
       content: ['', Validators.required],
-      Image: '',
+      images: '',
       userId: this.users,
-      firstname: this.firstname
+      firstname: this.firstname,
+      approvalstatus: '0',
+      postlocation: '',
+      title: ''
       // 
     });
   }
+
+  public onUploadFinished = (event: any) => {
+    this.response = event;
+    console.log(this.response);
+  
+    // Assign this.response.dbPath to the images field
+    if (this.response && this.response.dbPath) {
+      this.postForm.patchValue({
+        images: this.response.dbPath
+      });
+    }
+  }
+  
+  public updateImageUrl(imageUrl: string) {
+    this.imageUrl = imageUrl;
+  }
+
+
   onSubmit() {
     if (this.postForm.valid) {
 

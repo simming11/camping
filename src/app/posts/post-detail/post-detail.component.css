@@ -1,0 +1,76 @@
+.images-content{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    border: 1px solid black;
+}
+.firstname {
+    display: flex;
+    padding-right: 30vh;
+    font-size: 30px;
+    padding-top: 40px;
+    
+}
+
+/* ปรับขนาดความกว้างของ Material Card */
+.example-card {
+    display: flex;
+    width: auto; /* ปรับขนาดความกว้างตามที่คุณต้องการ */
+    height: auto; /* ปรับขนาดความสูงตามที่คุณต้องการ */
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+  
+/* Truncate text if it's too long */
+.blockp {
+    /* text-overflow: ellipsis; */
+    white-space: unset; /* Prevent line breaks */
+    /* overflow: hidden; */
+    max-width: 90%; /* Adjust the max-width to your liking */
+  }
+  
+  /* Optional: Add some margin to the ellipsis for better readability */
+  .blockp::after {
+    content: ''; /* Add a pseudo-element */
+    display: inline-block;
+    width: 10em; /* Adjust the width as needed */
+  }
+  
+  .location-icon {
+    margin-right: 5px;
+    /* เพิ่มระยะห่างระหว่าง <img> และ <h5> */
+    text-align: start;
+  }
+  .location-text {
+    margin-top: 6px;
+  }
+  .location-container {
+    display: flex;
+    /* ใช้ Flexbox เพื่อให้ <img> และ <h5> อยู่บรรทัดเดียวกัน */
+    align-items: center;
+    padding-bottom: 40px;
+    /* จัดให้ <img> และ <h5> อยู่กึ่งกลางตามแนวตั้ง */
+  }
+  h3{
+    font-size: 40px;
+  }
+
+  .profile-image {
+    width: 40px; /* ปรับขนาดรูปโปรไฟล์ตามความต้องการ */
+    height: 40px;
+    border-radius: 50%;
+    display: inline;
+  }
+
+  .return-link {
+    display: inline;
+    align-items: start;
+    text-decoration: none;
+    color: #333;
+    padding: 5px;
+    background-color: aqua;
+    border-radius: 2px;
+  }

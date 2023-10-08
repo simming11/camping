@@ -1,30 +1,66 @@
 .container {
     background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .registration-form {
-    background-color: #fff;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
 
   h2 {
     text-align: center;
-    margin-bottom: 20px;
+    padding: 0px;
+    background-color: #28a745;
   }
 
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    display: inline;
+    justify-content: center;
+    align-items: center;
   }
 
   label {
     font-weight: bold;
   }
 
+  .btn-primary {
+    width: 100%;
+  }
+  #profilePicture{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+  }
+  .img-thumbnail{
+    width: 25vh;
+    height: 25vh;
+  }
+  .imagesprofile{
+    display: inline;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-picture {
+    width: 200px; /* ปรับขนาดรูปภาพตามที่คุณต้องการ */
+    height: 200px; /* ปรับขนาดรูปภาพตามที่คุณต้องการ */
+    border: 2px solid #ccc; /* เพิ่มเส้นขอบสีเทา */
+    border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
+    object-fit: cover; /* ปรับขนาดรูปภาพให้ครอบคลุมพื้นที่ในกรอบ */
+  }
+
+  .registration-form {
+    padding-bottom: 50px;
+    /* background-color: #f9f9f9; */
+    /* border: 1px solid #ddd;
+    border-radius: 5px; */
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+  }
+
+  /* ปรับขนาดปุ่ม Register ให้กว้างขึ้น */
   .btn-primary {
     width: 100%;
   }

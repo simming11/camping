@@ -10,17 +10,25 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration/registration.component';
 import {  ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
-import { EditProfileComponent } from './navbar/edit/edit-profile/edit-profile.component';
 import { PostsComponent } from './posts/posts.component';
 import { MypostComponent } from './posts/mypost/mypost/mypost.component';
 import { EditpostComponent } from './posts/mypost/mypost/editpost/editpost/editpost.component';
 import { AdminComponent } from './admin/admin.component';
 import { NavbarAdminComponent } from './admin/navbar-admin/navbar-admin.component';
 import { NavbarUserComponent } from './navbar-user/navbar-user.component';
-
+import { ApprovalstatusComponent } from './admin/approvalstatus/approvalstatus/approvalstatus.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { UploadComponent } from './upload/upload.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import { PostDetailComponent } from './posts/post-detail/post-detail.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { EditProfileComponent } from './navbar/edit/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,24 +37,35 @@ import { NavbarUserComponent } from './navbar-user/navbar-user.component';
     HomeComponent,
     RegistrationComponent,
     FooterComponent,
-    EditProfileComponent,
     PostsComponent,
     MypostComponent,
     EditpostComponent,
     AdminComponent,
     NavbarAdminComponent,
     NavbarUserComponent,
+    ApprovalstatusComponent,
+    UploadComponent,
+    PostDetailComponent,
+    NotFoundComponent,
+    EditProfileComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     MatToolbarModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule
-
+    HttpClientModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatButtonModule,
+    RouterModule,
+    AppRoutingModule
+    
     
   ],
   providers: [

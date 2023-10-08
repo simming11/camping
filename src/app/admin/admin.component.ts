@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-admin',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-
+  panelOpenState = false;
 }

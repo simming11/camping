@@ -15,13 +15,16 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private http: RegistrationService,
-    private SH: SharedService) 
+    private SH: SharedService,
+    
+    
+        ) 
     { }
   username: string = '';
   password: string = '';
   role: string = 'admin';
   users: any[] = []; 
-
+  
   ngOnInit() {
     this.http.ShowUser().subscribe((data:any) => {
       this.users = data
@@ -38,17 +41,23 @@ export class LoginComponent implements OnInit {
       this.SH.setItem('user', user);
       this.SH.setItem('userid', user.userid);
       this.SH.setItem('role', user.role);
+      this.SH.setItem('images',user.images)
       
-      if (user.role == 'admin') {
+      if (user.role === 'admin') {
         console.log(user.role,'role');
         this.SH.setItem('firstname', user.firstname);
         this.SH.setItem('user', user);
         this.SH.setItem('userid', user.userid);
         this.SH.setItem('role', user.role);
-        
+        this.SH.setItem('images',user.images)
         // Redirect to the admin page or any other page for admins
         this.router.navigate(['admin']);
         this.authService.loginAdmin();
+        Swal.fire(
+          'เข้าสู่ระบบสำเร็จ',
+          '',
+          'success'
+        )
       } else {
         // For non-admin users
         Swal.fire(

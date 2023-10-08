@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
-import { Registration } from 'src/app/navbar/edit/edit-profile/edit-profile.component';
-import { RegistrationService } from 'src/app/registration/registration.service';
-import { SharedService } from 'src/app/shared.service';
 import Swal from 'sweetalert2';
+import { Registration } from '../../../../../navbar/edit/edit-profile/edit-profile.component';
+import { AuthService } from '../../../../../auth.service';
+import { RegistrationService } from '../../../../../registration/registration.service';
+import { SharedService } from '../../../../../shared.service';
 export class CreatePostComponent {
 	postid!: string;
 	userId?: string;
@@ -14,8 +14,11 @@ export class CreatePostComponent {
 	timestamp?: string;
 	privacysetting?: string;
   firstname! : string
-	// adminapprovals: Adminapproval[];
-	// user?: User;
+  postlocation! : string
+  approvalstatus! : number
+  imageUrl: string | undefined;
+  title!: any
+  urlimages : any = 'https://localhost:7197/'
 }
 @Component({
   selector: 'app-editpost',
@@ -34,6 +37,12 @@ export class EditpostComponent implements OnInit {
   firstname: any[] = [];
   getdataUser : any
   postid:any
+  imageUrl: string | undefined;
+  images: any;
+  approvalstatus! :number
+  ttitle!: any
+  urlimages : any = 'https://localhost:7197/'
+  public response! : {dbPath : ''}
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -46,7 +55,7 @@ export class EditpostComponent implements OnInit {
   ngOnInit(){
      this.users = this.SH.getItem('userid')
      this.firstname = this.SH.getItem('firstname')
-    
+     this.images = this.SH.getItem('images')
 
     this.route.params.subscribe(params => {
       this.mypost = params['mypost'];
@@ -54,7 +63,7 @@ export class EditpostComponent implements OnInit {
         this.post = data;
         const foundUser = this.post.find(post => post.postid === this.mypost);
         console.log(foundUser,'foutd');
-        if (foundUser) {
+        if (foundUser) { 
           this.registrationForm.patchValue(foundUser);
         } else {
           console.log('No user with firstname matching:', this.mypost);
@@ -63,36 +72,52 @@ export class EditpostComponent implements OnInit {
     });
     this.createRegistrationForm()
   }
+
+  public updateImageUrl(imageUrl: string) {
+    this.imageUrl = imageUrl;
+  }
+
+  public onUploadFinished = (event: any) => {
+    this.response = event;
+    // Assign this.response.dbPath to the images field
+    if (this.response && this.response.dbPath) {
+      this.registrationForm.patchValue({
+        images: this.response.dbPath
+      });
+    }
+  }
+
+  public createImgPath = (serverPath: string) => { 
+    return `https://localhost:7197/${serverPath}`; 
+  }
+  
   createRegistrationForm() {
     this.registrationForm = this.fb.group({
       content: ['',  Validators.required],
-      Image: '', 
+      images: '', 
       userid : this.users,
-      firstname : this.firstname
+      firstname : this.firstname,
+      approvalstatus: '1',
+      postlocation: '',
+      title: '',
+      timestamp: ''
     });
   }
   onSubmit() {
     if (this.registrationForm.valid) {
       const updatedPostData = this.registrationForm.value;
        this.postid = this.mypost
-      // Send a request to update the post data
       console.log(updatedPostData,'updatapostdata');
       
       this.servince.editPost( this.postid, updatedPostData).subscribe(
         (response) => {
-          // Handle success, for example, show a success message using Swal
           Swal.fire('Post updated successfully', '', 'success');
-
-          // Redirect to the post details page or any other appropriate page
-          // this.router.navigate(['/post-details', this.postId]);
         },
         (error) => {
           console.error('Error updating post:', error);
-          // Handle error, show an error message, etc.
         }
       );
     } else {
-      // Form is not valid, show an error message or take appropriate action
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegistrationService } from 'src/app/registration/registration.service';
-import { SharedService } from 'src/app/shared.service';
 import Swal from 'sweetalert2';
+import { RegistrationService } from '../../../registration/registration.service';
+import { SharedService } from '../../../shared.service';
 
 @Component({
   selector: 'app-mypost',
@@ -11,24 +11,33 @@ import Swal from 'sweetalert2';
   styleUrls: ['./mypost.component.css']
 })
 export class MypostComponent implements OnInit{
+  displayedColumns: string[] = ['no', 'title', 'content', 'postlocation','images' ,'actions'];
   users: any[] = []; 
   firstname: any[] = [];
-  ShowPost: any[] = [];
+  post: any[] = [];
   mypost : any[] = [];
+  approvalstatus: any[] = [];
+
   constructor( private fb: FormBuilder, 
     private service: RegistrationService, 
     private router: Router,
-    private SH: SharedService,
-    
+    private shared: SharedService, 
     ) 
     {}
 
   ngOnInit(){
-    this.firstname = this.SH.getItem('firstname')
+    this.shared.getItem('firstname')
+    this.shared.getItem('user')
+    this.shared.getItem('userid')
+    this.shared.getItem('role')
+    this.firstname = this.shared.getItem('firstname')
     this.service.ShowPost().subscribe((data: any) => {
-      this.ShowPost = data.filter((post: any) => post.firstname === this.firstname);
-      console.log(this.ShowPost, 'ShowPost');
+      this.post = data.filter((post: any) => post.firstname === this.firstname );
+      console.log(this.post, 'ShowPost');
     });
+  }
+  public createImgPath = (serverPath: string) => { 
+    return `https://localhost:7197/${serverPath}`; 
   }
   confirmDelete(postId: number) {
     Swal.fire({
@@ -48,8 +57,8 @@ export class MypostComponent implements OnInit{
           (error) => {
             Swal.fire('Deleted!', 'The post has been deleted.', 'success');
             this.service.ShowPost().subscribe((data: any) => {
-              this.ShowPost = data.filter((post: any) => post.firstname === this.firstname);
-              console.log(this.ShowPost, 'ShowPost');
+              this.post = data.filter((post: any) => post.firstname === this.firstname);
+              console.log(this.post, 'ShowPost');
             });
           }
           );

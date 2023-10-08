@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+  }
+  
+  a.zoom-on-hover {
+    position: relative;
+    text-decoration: none;
+    color: #000; /* สีข้อความลิงก์ที่ไม่ถูกเลือก (เปลี่ยนเป็นสีที่คุณต้องการ) */
+    transition: color 0.2s, transform 0.2s, border-color 0.2s; /* ใช้แอนิเมชันเมื่อมีการเปลี่ยนแปลงสี, transform, และ border-color */
+    border-bottom: 2px solid transparent; /* เส้นขอบเริ่มต้นที่ไม่แสดง (โปร่งใส) */
+    padding-bottom: 2px; /* ระบายด้านล่างสำหรับเส้นขอบ */
+  }

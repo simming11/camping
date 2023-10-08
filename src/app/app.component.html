@@ -1,4 +1,9 @@
-<app-navbar-admin *ngIf="islogInAdmin"></app-navbar-admin>
-<app-navbar-user *ngIf="isLoggedIn"></app-navbar-user>
-<app-navbar *ngIf="!isLoggedIn && !islogInAdmin"></app-navbar>
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlexFill>
+    <app-navbar-admin *ngIf="islogInAdmin"></app-navbar-admin>
+    <app-navbar-user *ngIf="isLoggedIn"></app-navbar-user>
+    <app-navbar *ngIf="!isLoggedIn && !islogInAdmin"></app-navbar>
+    <div fxFlex>
+        <router-outlet></router-outlet> 
+    </div>
+</div>
+<app-footer></app-footer>   

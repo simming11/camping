@@ -8,7 +8,7 @@ export class RegistrationService {
 
   constructor(private http: HttpClient ) { }
 
-  postData(data: any) {
+  getuser(data: any) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>('https://localhost:7197/api/Camp/save' ,data, { headers });
   }
@@ -38,4 +38,17 @@ export class RegistrationService {
     return this.http.post<any>('https://localhost:7197/api/Camp/saveimages', model, { headers });
   }
   
+  editUser(userid: Guid, updatedUser: any) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const editUrl = `https://localhost:7197/api/Camp/edituser/${userid}`; // Replace with your API endpoint
+    return this.http.put<any>(editUrl, updatedUser, { headers });
+  }
+
+  searchPosts(searchTerm: string) {
+    // Encode the search term for safe URL usage
+    const encodedSearchTerm = encodeURIComponent(searchTerm);
+    
+    // Make an HTTP GET request to your API
+    return this.http.get<any[]>(`https://localhost:7197/api/Camp/SearchPost?searchTerm=${encodedSearchTerm}`);
+  }
 }

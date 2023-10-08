@@ -1,12 +1,12 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
-import { RegistrationService } from 'src/app/registration/registration.service';
-import { SharedService } from 'src/app/shared.service';
 import { Guid } from 'guid-typescript';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../../auth.service';
+import { RegistrationService } from '../../../registration/registration.service';
+import { SharedService } from '../../../shared.service';
 export class Registration {
   username!: string | null;
   password!: string | null;
@@ -16,7 +16,9 @@ export class Registration {
   lastname!: string | null;
   phonenumber!: string | null;
   dateofbirth!: null;
-  avatar ! :string
+  images ! :string
+ 
+  userId?: string;
 }
 
 @Component({
@@ -26,10 +28,21 @@ export class Registration {
 export class EditProfileComponent implements OnInit {
   data: any
   sesStr: any
+  userid: any
   registrationForm!: FormGroup;
   userData: Registration = new Registration();
   users: any[] = []; 
   getdataUser : any
+  imageUrl: string | undefined;
+  isImageDisplayed: boolean = false; // เพิ่มตัวแปร isImageDisplayed
+  registrationForms!: FormGroup;
+  progress!: number;
+  message!: string;
+  images: any;
+  firstname: any[] = [];
+  myuser:any
+  user:any[] = []
+  public response! : {dbPath : ''}
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -37,77 +50,90 @@ export class EditProfileComponent implements OnInit {
     private SH: SharedService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private http: RegistrationService
+    private http: RegistrationService,
   ) { }
   ngOnInit() {
+    this.userid = this.SH.getItem('userid')
+    this.firstname = this.SH.getItem('firstname')
+    this.images = this.SH.getItem('images')
+
+
     this.route.params.subscribe(params => {
-      this.sesStr = params['sesStr'];
-      console.log(this.sesStr,'sssertr');
+      this.myuser = params['userid'];
+      console.log(this.myuser);
       
       this.http.ShowUser().subscribe((data: any) => {
-        this.users = data;
-    
-        // Use the Array.find method to search for an object with matching firstname
-        const foundUser = this.users.find(user => user.firstname === this.sesStr);
-    
+        this.user = data;
+        const foundUser = this.user.find(user => user.userid === this.myuser);
+        console.log(foundUser,'foutd');
         if (foundUser) {
-           this.getdataUser= this.SH.getItem('user');
-          console.log( this.getdataUser,'userdata1111');
-          
-
-          this.registrationForm.patchValue(this.getdataUser);
-          console.log(this.registrationForm.patchValue(this.getdataUser),'path');
-          
-  
-          console.log('Found a user with firstname:', foundUser.firstname);
-          // Perform your action here when a matching user is found
+          this.registrationForm.patchValue(foundUser);
         } else {
-          console.log('No user with firstname matching:', this.sesStr);
-          // Perform an action when no matching user is found
+          console.log('No user with firstname matching:', this.myuser);
         }
       });
     });
     
     this.createRegistrationForm()
   }
+
+  public updateImageUrl(imageUrl: string) {
+    this.imageUrl = imageUrl;
+  }
+
+  public onUploadFinished = (event: any) => {
+    this.response = event;
+    console.log(this.response);
+    if (this.response && this.response.dbPath) {
+      this.registrationForm.patchValue({
+        images: this.response.dbPath
+      });
+    }
+  }
+
+  public createImgPath = (serverPath: string) => { 
+    return `https://localhost:7197/${serverPath}`; 
+  }
+
   createRegistrationForm() {
     this.registrationForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
-      avatar : '',
+      images : '',
       firstname: '',
       lastname: '', 
       phonenumber: '', 
       dateofbirth: null,
+      userid: '',
+      role: 'user'
     });
   }
-   onSubmit() {
-  //   if (this.registrationForm.valid) {
-  //     const registrationData: Registration = this.registrationForm.value;
-  //     console.log(registrationData, "value");
-  
-  //     // Pass the username from route parameters and registrationData to editData
-  //     this.servince.editData(this.sesStr, registrationData).subscribe(
-  //       (res: any) => {
-  //         Swal.fire(
-  //           'แก้ไขสำเร็จ',
-  //           '',
-  //           'success'
-  //         )
-  //       },
-  //       (error: any) => {
-  //         console.error("เกิดข้อผิดพลาด", error);
-  //       }
-  //     );
-  //     this.router.navigate(['home']);
-  //   } else {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'กรุณากรอกให้ถูกต้อง!',
-  //     })
-  //     console.log('กรุณากรอกข้อมูลให้ถูกต้อง');
-  //   }
-   }
+  editUser() {
+    if (this.registrationForm.valid) {
+      const updatedUserData = this.registrationForm.value;
+      this.userid = this.myuser; // Get the user's ID from your data
+      console.log(this.userid,'userid');
+      
+        console.log(updatedUserData,'updatedUserData');
+        
+      this.servince.editUser(this.userid, updatedUserData).subscribe(
+        (response) => {
+          Swal.fire('แก้ไขเรียบร้อย', 'กรุณาออกจากระแบบและเข้าใหม่', 'success');
+          this.authService.logout()
+          this.router.navigate(['/form']);
+        },
+        (error) => {
+          console.error('Error updating user:', error);
+        }
+      );
+      
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill out the form correctly!',
+      });
+    }
+  }
 }
