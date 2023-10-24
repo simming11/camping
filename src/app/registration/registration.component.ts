@@ -50,24 +50,21 @@ export class RegistrationComponent implements OnInit {
   ) {
     this.createRegistrationForm();
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit(){
+    this.createRegistrationForm();
+
+    // Subscribe to form value changes
+    this.subscription = this.registrationForms.valueChanges.subscribe((formData) => {
+      localStorage.setItem('registrationData', JSON.stringify(formData));
+    });
+
+    // Fetch data from Local Storage and populate the form if available
+    const savedData = localStorage.getItem('registrationData');
+    if (savedData) {
+      const registrationData = JSON.parse(savedData);
+      this.registrationForms.setValue(registrationData);
+    }
   }
-  // ngOnInit(): void {
-  //   this.createRegistrationForm();
-
-  //   // Subscribe to form value changes
-  //   this.subscription = this.registrationForms.valueChanges.subscribe((formData) => {
-  //     localStorage.setItem('registrationData', JSON.stringify(formData));
-  //   });
-
-  //   // Fetch data from Local Storage and populate the form if available
-  //   const savedData = localStorage.getItem('registrationData');
-  //   if (savedData) {
-  //     const registrationData = JSON.parse(savedData);
-  //     this.registrationForms.setValue(registrationData);
-  //   }
-  // }
 
   public updateImageUrl(imageUrl: string) {
     this.imageUrl = imageUrl;
@@ -180,30 +177,30 @@ export class RegistrationComponent implements OnInit {
         console.log(registrationData, "value");
         const requestBody = JSON.stringify(registrationData);
 
-        // this.service.getuser(requestBody).subscribe(
-        //   (res: any) => {
-        //     console.log("สำเร็จ");
-        //     console.log(res, 'res');
-        //     this.SH.setItem('firstname', registrationData.firstname);
-        //     this.SH.setItem('user', registrationData);
-        //     this.SH.setItem('role', registrationData.role);
-        //     this.SH.setItem('images', registrationData.images);
+        this.service.getuser(requestBody).subscribe(
+          (res: any) => {
+            console.log("สำเร็จ");
+            console.log(res, 'res');
+            this.SH.setItem('firstname', registrationData.firstname);
+            this.SH.setItem('user', registrationData);
+            this.SH.setItem('role', registrationData.role);
+            this.SH.setItem('images', registrationData.images);
 
-        //     // Remove the data from Local Storage
-        //     localStorage.removeItem('registrationData');
+            // Remove the data from Local Storage
+            localStorage.removeItem('registrationData');
 
-        //     // Reset the form
-        //     this.registrationForms.reset();
+            // Reset the form
+            this.registrationForms.reset();
 
-        //     // Call the login method here to automatically log in the user after registration
-        //     this.authService.login(); 
+            // Call the login method here to automatically log in the user after registration
+            // this.authService.login(); 
 
-        //     this.router.navigate(['/form']);
-        //   },
-        //   (error: any) => {
-        //     console.error("เกิดข้อผิดพลาด", error);
-        //   }
-        // );
+            this.router.navigate(['/form']);  
+          },
+          (error: any) => {
+            console.error("เกิดข้อผิดพลาด", error);
+          }
+        );
       }
     }
   }

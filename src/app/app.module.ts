@@ -22,13 +22,17 @@ import { ApprovalstatusComponent } from './admin/approvalstatus/approvalstatus/a
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UploadComponent } from './upload/upload.component';
-import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EditProfileComponent } from './navbar/edit/edit-profile/edit-profile.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +68,11 @@ import { EditProfileComponent } from './navbar/edit/edit-profile/edit-profile.co
     MatCardModule,
     MatButtonModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     
     
   ],

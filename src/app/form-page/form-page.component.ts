@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RegistrationService } from '../registration/registration.service';
 import { SharedService } from '../shared.service';
 import Swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-form-page',
   templateUrl: './form-page.component.html',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private http: RegistrationService,
     private SH: SharedService,
+    private cookieService: CookieService // Add this line
     
     
         ) 
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.SH.setItem('userid', user.userid);
       this.SH.setItem('role', user.role);
       this.SH.setItem('images',user.images)
+      this.cookieService.set('user', JSON.stringify(user));
       
       if (user.role === 'admin') {
         console.log(user.role,'role');
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['admin']);
         this.authService.loginAdmin();
         Swal.fire(
-          'เข้าสู่ระบบสำเร็จ',
+          'เข้าสู่ระบบ admin สำเร็จ',
           '',
           'success'
         )

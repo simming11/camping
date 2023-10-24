@@ -1,11 +1,11 @@
-.container {
-  background-color: #f4f4f4;
+/* .container {
+  background-color: #ff0000;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
 .registration-form {
-  background-color: #fff;
+  background-color: #ff0000;
   padding: 5px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -52,11 +52,11 @@ label {
   align-items: center;
 }
 .profile-picture {
-  width: 200px; /* ปรับขนาดรูปภาพตามที่คุณต้องการ */
-  height: 200px; /* ปรับขนาดรูปภาพตามที่คุณต้องการ */
-  border: 2px solid #ccc; /* เพิ่มเส้นขอบสีเทา */
-  border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
-  object-fit: cover; /* ปรับขนาดรูปภาพให้ครอบคลุมพื้นที่ในกรอบ */
+  width: 200px; 
+  height: 200px; 
+  border: 2px solid #ccc; 
+  border-radius: 50%; 
+  object-fit: cover; 
 }
 
 .registration-form {
@@ -67,7 +67,6 @@ label {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* ปรับขนาดปุ่ม Register ให้กว้างขึ้น */
 .btn-primary {
   width: 100%;
-}
+} */

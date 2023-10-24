@@ -12,12 +12,12 @@ import { SharedService } from '../shared.service';
 export class NavbarUserComponent implements OnInit {
   isLoggedIn = false;
   sesStr: string[] = [];
-  userid:string[] = []
+  userid: string[] = []
   islogInAdmin = false;
   user: any
   images: any;
-  urlimages : any = 'https://localhost:7197/'
-  firstname: any={};
+  urlimages: any = 'https://localhost:7197/'
+  firstname: any = {};
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -32,14 +32,11 @@ export class NavbarUserComponent implements OnInit {
         this.isLoggedIn = this.SH.getStorage('firstname');
         this.sesStr = this.SH.getItem('firstname');
         this.sesStr == data
-         this.userid =this.SH.getItem('userid');
-         this.images = this.SH.getItem('images')
+        this.userid = this.SH.getItem('userid');
+        this.images = this.SH.getItem('images')
       });
     });
   }
-  // public createImgPath = (serverPath: any) => {
-  //   return `https://localhost:7197/${serverPath}`;
-  // }
 
   logout() {
     sessionStorage.removeItem('firstname');

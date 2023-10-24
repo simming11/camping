@@ -8,7 +8,7 @@
     <th mat-header-cell *matHeaderCellDef> title </th>
       
     <td mat-cell *matCellDef="let post">  
-      <a [routerLink]="['/postTail', post.postid]">
+      <a [routerLink]="['/PostDetail', post.postid]">
         {{ post.title }} 
       </a>
     </td>

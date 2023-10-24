@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { SharedService } from './shared.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -15,13 +16,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private SH: SharedService
+    private SH: SharedService,
+    private cookieService: CookieService // Add this line
   ) {}
   ngOnInit() {
     // Check if the user is logged in
     this.authService.isLoggedIn$.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
       this.sesStr = this.SH.getItem('firstname');
+
     });
   
     // Check if the user is an admin
@@ -34,12 +37,13 @@ export class AppComponent implements OnInit {
     const role = this.SH.getItem('role');
     if (role === 'admin') {
       this.islogInAdmin = true;
-      
-    } else {
+    } else if (role === 'user') {
       this.isLoggedIn = true;
-      // this.islogInAdmin = false;
-      // this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false; // หรือเงื่อนไขอื่น ๆ ที่คุณต้องการตรวจสอบ
+      this.islogInAdmin = false; // หรือเงื่อนไขอื่น ๆ ที่คุณต้องการตรวจสอบ
     }
+    
   }
   
   

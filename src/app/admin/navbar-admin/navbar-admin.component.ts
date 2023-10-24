@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
-import { RegistrationService } from '../../registration/registration.service';
-import { SharedService } from '../../shared.service';
+import { RegistrationService } from 'src/app/registration/registration.service';
+import { SharedService } from 'src/app/shared.service';
 ;
 @Component({
   selector: 'app-navbar-admin',
@@ -14,6 +14,7 @@ export class NavbarAdminComponent implements OnInit {
   sesStr: string[] = [];
   islogInAdmin = false;
   images : [] =[]
+  userid:any[] = []
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -26,7 +27,7 @@ export class NavbarAdminComponent implements OnInit {
       this.islogInAdmin = islogInAdmin;
       this.islogInAdmin = this.SH.getStorage('firstname');
       this.sesStr = this.SH.getItem('firstname');
-      this.SH.getItem('userid');
+      this.userid= this.SH.getItem('userid');
       this.images = this.SH.getItem('images')
     });
   }

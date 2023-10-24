@@ -20,8 +20,11 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "admin-lte": "3.2",
     "cors": "^2.8.5",
+    "font-awesome": "^4.7.0",
     "mdb-angular-ui-kit": "^5.0.0",
+    "ngx-cookie-service": "^16.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

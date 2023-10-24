@@ -20,17 +20,17 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'form', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'edit/:userid', component: EditProfileComponent ,canActivate: [MyGuardGuard]},
+  { path: 'edit/:userid', component: EditProfileComponent},
   { path: 'post', component: PostsComponent ,canActivate: [MyGuardGuard]},
   { path: 'Mypost', component: MypostComponent ,canActivate: [MyGuardGuard]},
   { path: 'post/:mypost', component: EditpostComponent ,canActivate: [MyGuardGuard] },
   { path: 'Approvalstatus', component: ApprovalstatusComponent ,canActivate: [AdminGuard] },
   { path: 'upload', component: UploadComponent},
   { path: 'PostDetail/:mypost', component: PostDetailComponent },
-  { path: 'admin', component: AdminComponent,canActivate: [AdminGuard]},
+  { path: 'admin', component: AdminComponent},
   {
     path: 'adminprotected',
-    component: AdminComponent,
+    component: LoginComponent,
     canActivate: [AdminGuard] // Protect this route with the AdminGuard
   },
   {
