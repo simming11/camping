@@ -31,7 +31,7 @@ export class PostsComponent implements OnInit {
   postForm!: FormGroup; // สร้าง FormGroup
   userData: CreatePostComponent = new CreatePostComponent();
   users: any[] = [];
-  firstname: any[] = [];
+  name: any[] = [];
   dataSission: any[] = [];
   selectedFiles: File[] = [];
   public response! : {dbPath : ''}
@@ -51,32 +51,28 @@ export class PostsComponent implements OnInit {
     this.CreatePostComponent();
   }
   ngOnInit() {
-    this.users = this.SH.getItem('userid')
+    this.users = this.SH.getItem('userid');
     console.log(this.users, 'user');
-
-    this.firstname 
-    console.log(this.users, 'firstname');
-    this.images = this.SH.getItem('images')
+  
+    this.images = this.SH.getItem('images');
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
-      this.http.ShowUser().subscribe((data: any) => {
-        this.isLoggedIn = isLoggedIn;
-        this.isLoggedIn = this.SH.getStorage('firstname');
-        this.firstname  = this.SH.getItem('firstname');
-        this.SH.getItem('userid');
-         this.images = this.SH.getItem('images')
-      });
+      this.isLoggedIn = isLoggedIn;
+      this.name = this.SH.getItem('firstname'); // Assign this.name
+      console.log(this.name, 'name');
+  
+      this.SH.getItem('userid');
+      this.images = this.SH.getItem('images');
     });
-
-
-    this.CreatePostComponent()
-
+  
+    this.CreatePostComponent();
   }
+  
   CreatePostComponent() {
     this.postForm = this.fb.group({
       content: ['', Validators.required],
       images: '',
       userId: this.users,
-      firstname: this.firstname,
+      firstname: this.name,
       approvalstatus: '0',
       postlocation: '',
       title: ''
@@ -119,7 +115,7 @@ export class PostsComponent implements OnInit {
             'success'
           )
 
-          this.router.navigate(['home']);
+          // this.router.navigate(['home']);
         },
         (error: any) => {
           console.error("เกิดข้อผิดพลาด", error);

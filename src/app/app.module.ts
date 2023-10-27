@@ -32,6 +32,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { UserComponent } from './admin/user/user/user.component';
+import { ViewPostComponent } from './admin/post/post/post.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     UploadComponent,
     PostDetailComponent,
     NotFoundComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    UserComponent,
+    ViewPostComponent
 
   ],
   imports: [
@@ -73,6 +78,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatPaginatorModule
     
     
   ],

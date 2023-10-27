@@ -66,6 +66,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+
   public updateImageUrl(imageUrl: string) {
     this.imageUrl = imageUrl;
   }
@@ -103,47 +104,6 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-
-  // onSubmit() {
-  //   if (this.registrationForms.valid) {
-  //     const registrationData: User = this.registrationForms.value;
-  //     console.log(registrationData, "value");
-  //     const requestBody = JSON.stringify(registrationData); 
-
-  //     this.service.getuser(requestBody).subscribe(
-  //       (res: any) => {
-  //         console.log("สำเร็จ");
-  //         console.log(res, 'res');
-  //         this.SH.setItem('firstname', registrationData.firstname);
-  //         this.SH.setItem('user', registrationData);
-  //         this.SH.setItem('role', registrationData.role);
-  //         this.SH.setItem('images', registrationData.images);
-
-  //         // Remove the data from Local Storage
-  //         localStorage.removeItem('registrationData');
-
-  //         // Reset the form
-  //         this.registrationForms.reset();
-
-  //         // Call the login method here to automatically log in the user after registration
-  //         this.authService.login(); 
-
-  //         this.router.navigate(['/form']);
-  //       },
-  //       (error: any) => {
-  //         console.error("เกิดข้อผิดพลาด", error);
-  //       }
-  //     );
-  //   } else {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'กรุณากรอกให้ถูกต้อง!',
-  //     });
-  //     console.log('กรุณากรอกข้อมูลให้ถูกต้อง');
-  //   }
-  // }
-
   onSubmit() {
     if (this.registrationForms.valid == false) {
       Swal.fire({
@@ -179,6 +139,7 @@ export class RegistrationComponent implements OnInit {
 
         this.service.getuser(requestBody).subscribe(
           (res: any) => {
+            Swal.fire('ลงทะเบียนสำเร็จ', '', 'success');
             console.log("สำเร็จ");
             console.log(res, 'res');
             this.SH.setItem('firstname', registrationData.firstname);

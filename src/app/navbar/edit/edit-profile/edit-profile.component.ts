@@ -16,8 +16,8 @@ export class Registration {
   lastname!: string | null;
   phonenumber!: string | null;
   dateofbirth!: null;
-  images ! :string
- 
+  images !: string
+
   userId?: string;
 }
 
@@ -31,8 +31,8 @@ export class EditProfileComponent implements OnInit {
   userid: any
   registrationForm!: FormGroup;
   userData: Registration = new Registration();
-  users: any[] = []; 
-  getdataUser : any
+  users: any[] = [];
+  getdataUser: any
   imageUrl: string | undefined;
   isImageDisplayed: boolean = false; // เพิ่มตัวแปร isImageDisplayed
   registrationForms!: FormGroup;
@@ -40,9 +40,11 @@ export class EditProfileComponent implements OnInit {
   message!: string;
   images: any;
   firstname: any[] = [];
-  myuser:any
-  user:any[] = []
-  public response! : {dbPath : ''}
+  myuser: any
+  user: any[] = []
+  edit: any = {}
+  imageUploaded = false;
+  public response!: { dbPath: '' }
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -61,19 +63,19 @@ export class EditProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.myuser = params['userid'];
       console.log(this.myuser);
-      
+
       this.http.ShowUser().subscribe((data: any) => {
         this.user = data;
-        const foundUser = this.user.find(user => user.userid === this.myuser);
-        console.log(foundUser,'foutd');
-        if (foundUser) {
-          this.registrationForm.patchValue(foundUser);
+        this.edit = this.user.find(user => user.userid === this.myuser);
+        console.log(this.edit, 'foutd');
+        if (this.edit) {
+          this.registrationForm.patchValue(this.edit);
         } else {
           console.log('No user with firstname matching:', this.myuser);
         }
       });
     });
-    
+
     this.createRegistrationForm()
   }
 
@@ -89,10 +91,11 @@ export class EditProfileComponent implements OnInit {
         images: this.response.dbPath
       });
     }
+    this.imageUploaded = true; // Set the flag to true to hide the initial image
   }
 
-  public createImgPath = (serverPath: string) => { 
-    return `https://localhost:7197/${serverPath}`; 
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:7197/${serverPath}`;
   }
 
   createRegistrationForm() {
@@ -100,10 +103,10 @@ export class EditProfileComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
-      images : '',
+      images: '',
       firstname: '',
-      lastname: '', 
-      phonenumber: '', 
+      lastname: '',
+      phonenumber: '',
       dateofbirth: null,
       userid: '',
       role: 'user'
@@ -113,10 +116,10 @@ export class EditProfileComponent implements OnInit {
     if (this.registrationForm.valid) {
       const updatedUserData = this.registrationForm.value;
       this.userid = this.myuser; // Get the user's ID from your data
-      console.log(this.userid,'userid');
-      
-        console.log(updatedUserData,'updatedUserData');
-        
+      console.log(this.userid, 'userid');
+
+      console.log(updatedUserData, 'updatedUserData');
+
       this.servince.editUser(this.userid, updatedUserData).subscribe(
         (response) => {
           Swal.fire('แก้ไขเรียบร้อย', 'กรุณาออกจากระแบบและเข้าใหม่', 'success');
@@ -127,7 +130,7 @@ export class EditProfileComponent implements OnInit {
           console.error('Error updating user:', error);
         }
       );
-      
+
     } else {
       Swal.fire({
         icon: 'error',

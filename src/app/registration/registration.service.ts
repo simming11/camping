@@ -27,6 +27,12 @@ export class RegistrationService {
     const deleteUrl = `https://localhost:7197/api/Camp/delete/${postId}`;
     return this.http.delete<any>(deleteUrl);
   }
+
+  deleteUser(userid: any) {
+    const deleteUrl = `https://localhost:7197/api/Camp/Userdelete/${userid}`;
+    return this.http.delete<any>(deleteUrl);
+  }
+
   editPost(postId: Guid, updatedPost: any) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const editUrl = `https://localhost:7197/api/Camp/edit/${postId}`; // Replace with your API endpoint

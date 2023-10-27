@@ -2,16 +2,18 @@
   <div class="row">
     <div class="col-md-12">
       <mat-card class="example-card">
-        <a [routerLink]="['/home']" class="return-link">
-          <img src="/assets/return.png" alt="Profile Image" class="profile-image">
-        </a>
+        <div class="return">
+          <a [routerLink]="['/home']" class="return-link">
+            <img src="/assets/return.png" alt="Profile Image" class="profile-image">
+          </a>
+        </div>
         <h1 class="firstname">{{detail.firstname}}</h1>
         <div class="col-md-12">
           <img src="{{ createImgPath(detail.images) }}" width="350px" height="350px" class="images-content">
         </div>
         <mat-card-header>
           <mat-card-title-group>
-            
+
             <h3>{{detail.title}}</h3>
           </mat-card-title-group>
         </mat-card-header>
@@ -28,16 +30,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container text-center">
-  <div class="row">
-    <div class="col">col</div>
-    <div class="col">col</div>
-    <div class="col">col</div>
-    <div class="col">col</div>
-  </div>
-  <div class="row">
-    <div class="col-8">col-8</div>
-    <div class="col-4">col-4</div>
-  </div>
-</div> -->

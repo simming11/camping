@@ -10,3 +10,50 @@ table {
     border-bottom: 2px solid transparent; /* เส้นขอบเริ่มต้นที่ไม่แสดง (โปร่งใส) */
     padding-bottom: 2px; /* ระบายด้านล่างสำหรับเส้นขอบ */
   }
+  .my-custom-table {
+    background-color: lightgray; /* เปลี่ยนสีพื้นหลัง */
+  }
+  
+  .my-custom-table th {
+    background-color: #458cff; /* เปลี่ยนสีพื้นหลังสำหรับหัวของคอลัมน์ */
+    color: white; /* เปลี่ยนสีข้อความในหัวของคอลัมน์ */
+  }
+  
+  .my-custom-table td {
+    background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังของข้อมูล */
+  }
+  .no-posts-message {
+    display: flex;
+    /* จัดตำแหน่งตรงกลางแนวนอน */
+    justify-content: center; 
+    /* จัดตำแหน่งตรงกลางแนวตั้ง */
+    align-items: center; 
+    /* ทำให้ข้อความเต็มความสูงของหน้าต่าง */
+    height: 50vh; 
+    /* เปลี่ยนสีพื้นหลัง */
+    background-color: lightgray; 
+    padding: 20px; 
+    margin-bottom: 55px;
+  }
+  
+  
+  .container-box {
+    background-color: white;
+    /* สีพื้นหลังของกล่อง */
+    width: auto;
+    /* กว้างเต็มหน้าจอ */
+    height: 100vh;
+    /* ความสูงเท่ากับ 50% ของความสูงของหน้าจอ */
+    /* display: flex;
+    justify-content: center; */
+    /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center;
+    /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    border: 1px solid #ccc;
+    /* เส้นขอบ */
+    border-radius: 5px;
+    /* มุมของกล่อง */
+    overflow: auto;
+    margin-bottom: 70px;
+    
+}

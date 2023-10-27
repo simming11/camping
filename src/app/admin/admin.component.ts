@@ -31,7 +31,6 @@ export class  AdminComponent implements OnInit {
     this.http.ShowUser().subscribe((data:any) => {
       this.users = data
       console.log(this.users);
-      
     });
     
     this.firstname = this.SH.getItem('firstname');

@@ -1,0 +1,67 @@
+<div class="container mb-3 mt-3 text-center">
+    <div class="dox mb-10">
+        <ng-container *ngIf="post && post.length > 0; else noPosts">
+
+            <div class="container-box">
+
+                <table mat-table [dataSource]="post" class="mat-elevation-z10 my-custom-table">
+
+                    <ng-container matColumnDef="no">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let post; let i = index"> {{ i + 1 }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="firstname">
+                        <th mat-header-cell *matHeaderCellDef> firstname </th>
+                        <td mat-cell *matCellDef="let post"> {{ post.firstname }} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef> title </th>
+                        <td mat-cell *matCellDef="let post"> {{ post.title }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="content">
+                        <th mat-header-cell *matHeaderCellDef> content </th>
+                        <td mat-cell *matCellDef="let post"> {{ post.content }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="images">
+                        <th mat-header-cell *matHeaderCellDef> images </th>
+                        <td mat-cell *matCellDef="let post"> <img [src]="createImgPath(post.images)"
+                                alt="profile picture" style="width:60px; height:60px;"> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="postlocation">
+                        <th mat-header-cell *matHeaderCellDef> postlocation </th>
+                        <td mat-cell *matCellDef="let post"> {{ post.postlocation }} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let post">
+                            <a class="profile-link">
+                                <img src="/assets/delete.png" alt="Profile Image" class="profile-image"
+                                    (click)="confirmDelete(post.postid)">
+                                <span class="profile-name">{{ mypost }}</span>
+                            </a>
+                        </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let post; columns: displayedColumns;"></tr>
+
+
+                </table>
+            </div>
+        </ng-container>
+
+        <ng-template #noPosts>
+            <h1 id="noPosts">ไม่มีการโพส</h1>
+        </ng-template>
+
+    </div>
+</div>

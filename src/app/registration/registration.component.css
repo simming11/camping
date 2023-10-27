@@ -2,12 +2,12 @@
     background-color: #f4f4f4;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    margin-bottom: 10px;
   }
 
   h2 {
     text-align: center;
     padding: 0px;
-    background-color: #28a745;
   }
 
   .form-group {
@@ -51,15 +51,27 @@
     border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
     object-fit: cover; /* ปรับขนาดรูปภาพให้ครอบคลุมพื้นที่ในกรอบ */
   }
-
+  .headResgites{
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    text-align: center;  
+    font-size: 40px;  
+  }
   .registration-form {
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     /* background-color: #f9f9f9; */
     /* border: 1px solid #ddd;
     border-radius: 5px; */
     /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
   }
-
+  .divheadRegister{
+    background-color: #667a43;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    text-align: center;   
+  }
   /* ปรับขนาดปุ่ม Register ให้กว้างขึ้น */
   .btn-primary {
     width: 100%;

@@ -8,6 +8,9 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
+  ShowPost() {
+    throw new Error('Method not implemented.');
+  }
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();

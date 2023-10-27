@@ -1,43 +1,34 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { RegistrationService } from 'src/app/registration/registration.service';
+import { SharedService } from 'src/app/shared.service';
+import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { RegistrationService } from '../../../registration/registration.service';
-import { SharedService } from '../../../shared.service';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-mypost',
-  templateUrl: './mypost.component.html',
-  styleUrls: ['./mypost.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-
-export class MypostComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'title', 'content', 'postlocation', 'images', 'actions'];
-  users: any[] = [];
-  firstname: any[] = [];
+export class UserComponent  implements OnInit{
+  displayedColumns: string[] = ['no', 'firstname','images', 'actions'];
   post: any[] = [];
+  firstname: any[] = [];
   mypost: any[] = [];
-  approvalstatus: any[] = [];
-
   constructor(private fb: FormBuilder,
     private service: RegistrationService,
-    private router: Router,
     private shared: SharedService,
   ) { }
 
   ngOnInit() {
+    this.service.ShowUser().subscribe((data:any) => {
+      this.post = data
+      console.log(this.post,'showUser');
+      
+    });
     this.shared.getItem('firstname');
     this.shared.getItem('user');
     this.shared.getItem('userid');
     this.shared.getItem('role');
-    
-    this.service.ShowPost().subscribe((data: any) => {
-      this.post = data.filter((post: any) => post.firstname === this.firstname);
-      console.log(this.post, 'ShowPost');
-      
-    });
-    
     this.firstname = this.shared.getItem('firstname');
     // Remove this line, as dataSource is not defined in your code
     // this.dataSource.paginator = this.paginator;
@@ -50,7 +41,7 @@ export class MypostComponent implements OnInit {
     return `https://localhost:7197/${serverPath}`;
   }
 
-  confirmDelete(postId: number) {
+  confirmDelete(userid: any) {
     Swal.fire({
       title: 'Do you want to delete this post?',
       showDenyButton: false,
@@ -60,20 +51,21 @@ export class MypostComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         // User clicked the "Delete" button
-        this.service.deletePost(postId).subscribe(
+        this.service.deleteUser(userid).subscribe(
           () => {
             Swal.fire();
             // Optionally, you can update your post list or perform other actions after deletion.
           },
           (error) => {
             Swal.fire('Deleted!', 'The post has been deleted.', 'success');
-            this.service.ShowPost().subscribe((data: any) => {
-              this.post = data.filter((post: any) => post.firstname === this.firstname);
-              console.log(this.post, 'ShowPost');
+            this.service.ShowUser().subscribe((data:any) => {
+              this.post = data
+              
             });
           }
         );
       }
     });
   }
+
 }

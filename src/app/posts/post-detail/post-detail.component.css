@@ -73,4 +73,10 @@
     padding: 5px;
     background-color: aqua;
     border-radius: 2px;
+    justify-content: start;
+    text-align: start;
+  }
+  .return{
+    display: flex;
+    padding-right: 150vh;
   }

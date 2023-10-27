@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     
-    this.firstname = this.SH.getItem('firstname');
+    
     this.http.ShowPost().subscribe((data: any) => {
       this.ShowPost = data.filter((post: any) => post.approvalstatus === 1); // Filter posts with approvalstatus 1 (true)
       console.log(this.ShowPost, 'ShowPost');
@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
         this.SH.getItem('userid');
         this.SH.getItem('role');
         this.SH.getItem('user');
+        this.firstname = this.SH.getItem('firstname');
         this.search()
       });
     });

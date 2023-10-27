@@ -14,6 +14,8 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { MyGuardGuard } from './my-guard.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule, Routes } from '@angular/router';
+import { UserComponent } from './admin/user/user/user.component';
+import { ViewPostComponent } from './admin/post/post/post.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // เพิ่มเส้นทางว่าง (empty path) ที่จะเปลี่ยนเส้นทางไปยัง '/home'
@@ -21,13 +23,15 @@ const routes: Routes = [
   { path: 'form', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'edit/:userid', component: EditProfileComponent},
-  { path: 'post', component: PostsComponent ,canActivate: [MyGuardGuard]},
-  { path: 'Mypost', component: MypostComponent ,canActivate: [MyGuardGuard]},
+  { path: 'post', component: PostsComponent ,canActivate: []},
+  { path: 'Mypost', component: MypostComponent ,canActivate: []},
   { path: 'post/:mypost', component: EditpostComponent ,canActivate: [MyGuardGuard] },
-  { path: 'Approvalstatus', component: ApprovalstatusComponent ,canActivate: [AdminGuard] },
+  { path: 'Approvalstatus', component: ApprovalstatusComponent ,canActivate:[] },
   { path: 'upload', component: UploadComponent},
   { path: 'PostDetail/:mypost', component: PostDetailComponent },
   { path: 'admin', component: AdminComponent},
+  { path: 'viewUser', component: UserComponent},
+  { path: 'viewPost', component: ViewPostComponent},
   {
     path: 'adminprotected',
     component: LoginComponent,

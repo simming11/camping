@@ -36,7 +36,7 @@ export class ApprovalstatusComponent implements OnInit {
 
       this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
         this.isLoggedIn = isLoggedIn;
-        this.isLoggedIn = this.SH.getStorage('firstname');
+        this.isLoggedIn = this.SH.getItem('firstname');
         this.SH.getItem('userid');
         this.SH.getItem('role');
         this.SH.getItem('user');

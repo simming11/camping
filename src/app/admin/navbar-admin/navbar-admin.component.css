@@ -26,4 +26,10 @@
   .profile-name {
     font-weight: bold;
   }
-  
+  .navbar{
+    background-color: #667a43;
+  }
+  .navbar-brand{
+      font-family: 'Pacifico', cursive;
+      font-size: 40px;
+  }

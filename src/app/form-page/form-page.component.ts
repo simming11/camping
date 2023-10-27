@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.http.ShowUser().subscribe((data:any) => {
       this.users = data
-      console.log(this.users);
+      console.log(this.users,'showUser');
       
     });
   }

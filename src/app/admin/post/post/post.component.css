@@ -1,0 +1,62 @@
+.profile-image {
+    width: 20px;
+    /* ปรับขนาดรูปโปรไฟล์ตามความต้องการ */
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+}
+
+/* CSS เพื่อจัดให้ข้อความ "ไม่มีการโพส" อยู่ตรงกลางแนวนอนและแสดงสวยงาม */
+#noPosts {
+    display: flex;
+    justify-content: center;
+    /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center;
+    /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    height: 50vh;
+    /* ระยะห่างระหว่างข้อความกับขอบบริเวณ */
+    background-color: #f2f2f2;
+    /* สีพื้นหลังของข้อความ */
+    border: 1px solid #ccc;
+    /* เส้นขอบ */
+    border-radius: 5px;
+    /* มุมของกล่อง */
+}
+
+/* CSS เพื่อกล่องสีขาวที่มีความกว้างและความสูงเท่ากับ 50vh */
+.container-box {
+    background-color: white;
+    /* สีพื้นหลังของกล่อง */
+    width: auto;
+    /* กว้างเต็มหน้าจอ */
+    height: 50vh;
+    /* ความสูงเท่ากับ 50% ของความสูงของหน้าจอ */
+    /* display: flex;
+    justify-content: center; */
+    /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center;
+    /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    border: 1px solid #ccc;
+    /* เส้นขอบ */
+    border-radius: 5px;
+    /* มุมของกล่อง */
+    overflow: auto;
+    margin-bottom: 60px;
+}
+/* 
+.my-custom-table {
+    background-color: rgb(255, 255, 255);
+}
+
+.my-custom-table th {
+    background-color: #458cff;
+    color: white;
+} */
